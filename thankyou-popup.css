@@ -1,0 +1,85 @@
+/* Thank You Pop-up Overlay */
+.thankyou-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other content */
+    visibility: hidden; /* Hidden by default */
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+
+.thankyou-popup-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Thank You Pop-up Content */
+.thankyou-popup-content {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    transform: translateY(-20px); /* Slight animation effect */
+    transition: transform 0.3s ease-in-out;
+}
+
+.thankyou-popup-overlay.active .thankyou-popup-content {
+    transform: translateY(0);
+}
+
+.thankyou-popup-content h2 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.thankyou-popup-content p {
+    color: #666;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Close Button */
+.thankyou-popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.thankyou-popup-close:hover {
+    color: #333;
+}
+
+/* Optional: Add some basic styling for a button inside the popup if needed */
+.thankyou-popup-content button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.thankyou-popup-content button:hover {
+    background-color: #0056b3;
+}
