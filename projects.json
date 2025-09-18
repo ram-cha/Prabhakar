@@ -1,0 +1,41 @@
+[
+    {
+        "id": "project1",
+        "title": "Marketing Campaign Analysis",
+        "category": "Market Research & Strategy",
+        "image": "Prabhakar_2.jpeg",
+        "short_description": "Analyzed market trends and consumer behavior for a product launch.",
+        "long_description": "Conducted extensive market research, competitive analysis, and consumer surveys to identify key market opportunities. Developed a comprehensive marketing strategy, including target audience segmentation, messaging, and channel selection. The campaign resulted in a 15% increase in brand awareness and a 10% rise in sales during the initial launch phase.",
+        "demo_link": "#",
+        "github_link": "#",
+        "technologies": ["Advanced Excel", "Google Analytics 4", "Qualitative Surveys", "Market Segmentation"],
+        "role": "Lead Analyst",
+        "animationDelay": 0.1
+    },
+    {
+        "id": "project2",
+        "title": "Digital Marketing Strategy for E-commerce",
+        "category": "Digital Marketing",
+        "image": "Prabhakar_3.jpeg",
+        "short_description": "Developed and executed a digital marketing strategy for an online retail store.",
+        "long_description": "Implemented SEO best practices, managed Google Ads campaigns, and optimized social media presence. Analyzed website traffic using Google Analytics to identify areas for improvement. The strategy led to a 25% increase in organic traffic and a 18% improvement in conversion rates.",
+        "demo_link": "#",
+        "github_link": "#",
+        "technologies": ["SEO Optimization", "Google Ads", "Social Media Marketing", "Google Analytics"],
+        "role": "Digital Marketing Specialist",
+        "animationDelay": 0.2
+    },
+    {
+        "id": "project3",
+        "title": "Brand Positioning and Communication",
+        "category": "Brand Strategy",
+        "image": "Prabhakar_4.jpeg",
+        "short_description": "Assisted in developing brand positioning and communication strategies for a new startup.",
+        "long_description": "Conducted stakeholder interviews and brand workshops to define brand values, mission, and vision. Developed key messaging frameworks and communication guidelines for various marketing channels. Created compelling brand stories that resonated with the target audience, enhancing brand recall and customer loyalty.",
+        "demo_link": "#",
+        "github_link": "#",
+        "technologies": ["Brand Strategy", "Communication Planning", "Workshop Facilitation", "Market Research"],
+        "role": "Strategy Consultant",
+        "animationDelay": 0.3
+    }
+]
