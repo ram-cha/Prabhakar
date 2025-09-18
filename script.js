@@ -255,10 +255,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+
+        // Thank You Modal functionality
+    const thankYouModal = document.getElementById('thank-you-modal');
+    const thankYouMessage = document.getElementById('thank-you-message');
+    const thankYouCloseButton = document.getElementById('thank-you-close-button');
+    const thankYouOkButton = document.getElementById('thank-you-ok-button');
+    const thankYouModalContent = thankYouModal.querySelector('.modal-content');
+
+    function closeThankYouModal() {
+        thankYouModal.classList.remove('show-modal');
+        thankYouModal.classList.add('hide-modal');
+    }
+
+    thankYouCloseButton.addEventListener('click', closeThankYouModal);
+    thankYouOkButton.addEventListener('click', closeThankYouModal);
+
+    // Confetti effect function
+    function createConfetti() {
+        const confettiContainer = document.createElement('div');
+        confettiContainer.className = 'confetti-container';
+        document.body.appendChild(confettiContainer);
+
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDelay = Math.random() * 3 + 's';
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confettiContainer.appendChild(confetti);
+        }
+
+        setTimeout(() => {
+            document.body.removeChild(confettiContainer);
+        }, 3000);
+    }
+
+    // Accessibility: Focus management for thank you modal
+    function openThankYouModal() {
+        thankYouModal.style.display = 'flex';
+        thankYouModal.classList.remove('hide-modal');
+        thankYouModal.classList.add('show-modal');
+        thankYouModal.setAttribute('aria-modal', 'true');
+        thankYouModal.setAttribute('role', 'dialog');
+        thankYouModal.setAttribute('tabindex', '-1');
+        thankYouModal.focus();
+
+        // Trigger confetti effect
+        createConfetti();
+
+        // Auto close after 5 seconds
+        setTimeout(() => {
+            closeThankYouModal();
+        }, 5000);
+    }
+
+    thankYouModalContent.addEventListener('animationend', (e) => {
+        if (e.animationName === 'modalFadeOut') {
+            thankYouModal.style.display = 'none';
+        }
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === thankYouModal) {
+            closeThankYouModal();
+        }
+    });
+
+
+    
+
     // Contact Form AJAX Submission
     const contactForm = document.querySelector('.contact-form');
     contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent default form submission (page reload)
+
         const formData = new FormData(contactForm);
         const data = {};
         formData.forEach((value, key) => {
@@ -266,26 +337,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (!data.name || !data.email || !data.message) {
-            alert('Please fill in all fields.');
+            alert('Please fill in all required fields (Name, Email, Message).');
             return;
         }
 
-        fetch('https://example.com/contact', {
+        fetch('https://formspree.io/f/meolbyvr', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json' // Important for Formspree AJAX
             },
             body: JSON.stringify(data)
-        }).then(response => {
-            if (response.ok) {
-                alert('Message sent successfully!');
-                contactForm.reset();
+        })
+        .then(response => response.json()) // Formspree returns JSON
+        .then(result => {
+            if (result.ok) { // Formspree uses 'ok' for success
+                const submittedName = data.name || 'Guest'; // Get name from form data
+                thankYouMessage.textContent = `Thank you, ${submittedName}! Your message has been sent. I will get back to you shortly.`;
+                openThankYouModal(); // Show the modal with enhancements
+                contactForm.reset(); // Clear the form
             } else {
                 alert('Failed to send message. Please try again later.');
+                console.error('Formspree error:', result);
             }
-        }).catch(error => {
+        })
+        .catch(error => {
             alert('An error occurred. Please try again later.');
-            console.error('Contact form error:', error);
+            console.error('Contact form submission error:', error);
         });
     });
 
